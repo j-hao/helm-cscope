@@ -6,8 +6,7 @@ helm frontend for cscope.
 Dependencies:
 ===========
 
-helm
-xcscope.el
+helm and xcscope.el
 
 Installation:
 =============
@@ -16,6 +15,7 @@ Add dir to load path where helm-cscope.el is located and add a require statement
 
 ```elisp
 (require 'helm-cscope)
+```
 
 Usage:
 ======
