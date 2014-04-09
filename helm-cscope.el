@@ -86,21 +86,14 @@ Expect a function takes arguments: file function-name line-number line"
           (let ((buffer-read-only nil))
             (delete-region (point-min) (point)))
           (setq cscope-process-output (buffer-string))
-          (let ((start 0) whole-line file function-name line-number line)
+          (let ((start 0) file function-name line-number line)
             (while (string-match
                     "^\\([^ \t-]+\\)[ \t]+\\([^ \t]+\\)[ \t]+\\([0-9]+\\)[ \t]+\\(.*\\)\n"
                     cscope-process-output start)
-              ;; Get a line
-              (setq whole-line (substring cscope-process-output
-                                          (match-beginning 0) (match-end 0)))
-              (setq file (substring whole-line (- (match-beginning 1) start)
-                                    (- (match-end 1) start))
-                    function-name (substring whole-line (- (match-beginning 2) start)
-                                             (- (match-end 2) start))
-                    line-number (substring whole-line (- (match-beginning 3) start)
-                                           (- (match-end 3) start))
-                    line (substring whole-line (- (match-beginning 4) start)
-                                    (- (match-end 4) start))
+              (setq file (match-string 1 cscope-process-output)
+                    function-name (match-string 2 cscope-process-output)
+                    line-number (match-string 3 cscope-process-output)
+                    line (match-string 4 cscope-process-output)
                     start (match-end 0))
               (setq result (cons (cons (funcall helm-cscope-display file function-name line-number line) (cons file (string-to-number line-number))) result))))))
     (nreverse result)))
