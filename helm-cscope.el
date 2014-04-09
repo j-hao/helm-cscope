@@ -133,13 +133,13 @@ Use it for non--interactive calls of `helm-cscope-find'."
            (helm-cscope-find-1 cscope-symbol)))
        ;;;###autoload
        (defun ,function-name-no-prompt-symbol ()
-          ,(concat doc " Without prompting")
-          (interactive)
-          (let ((cscope-adjust t) ;; Use fuzzy matching.
-                (cscope-display-cscope-buffer nil)
-                (cscope-symbol (cscope-extract-symbol-at-cursor nil))
-                (helm-cscope-call-parameter ,parameter-for-cscope))
-            (helm-cscope-find-1 cscope-symbol))))))
+         ,(concat doc " Without prompting")
+         (interactive)
+         (let ((cscope-adjust t) ;; Use fuzzy matching.
+               (cscope-display-cscope-buffer nil)
+               (cscope-symbol (cscope-extract-symbol-at-cursor nil))
+               (helm-cscope-call-parameter ,parameter-for-cscope))
+           (helm-cscope-find-1 cscope-symbol))))))
 
 (helm-cscope-find "helm-cscope-find-this-symbol"
                   "Locate a symbol in source code."
